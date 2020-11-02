@@ -1,98 +1,108 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>Bouncing Box</title>
-	<script src="jquery.min.js"></script>
-	<style>
-		.box {
-			width: 70px;
-			height: 70px;
-			background-color: teal;
-			font-size: 300%;
-			text-align: center;
-			display: block;
-			position: absolute;
-			top: 100px;
-			left: 0px;  /* <--- Change me! */
-		}
-	</style>
-	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+    <head>
+      <title>Taylor's Website</title>
+      <style>
+        body {
+            background: rgb(255, 255, 207);
+            color: rgb(45, 45, 45);
+            padding: 10px;
+            font-family: arial;
+        }
+        #all-contents {
+            max-width: 800px;
+            margin: auto;
+        }
 
-</head>
-<body class="board">
-	<!-- HTML for the box -->
-	<div class="box">?</div>
+        /* navigation menu */
+        nav {
+            background: rgb(255, 196, 235);
+            margin: 0 auto;
+            margin-bottom: 20px;
+            display: flex;
+            padding: 10px;    
+            border-radius: 30px;
+        }
+        h1 {
+            display: flex;
+            align-items: center;
+            color: white;
+            flex: 1;
+            margin: 0;
+        }
+        #nav-ul {
+            list-style-image: none;
+        }
+        .nav-li {
+            display: inline-block;
+            padding: 0 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
 
-	<script>
-		(function(){
-			'use strict'
-			/* global jQuery */
+        /* main container area beneath menu */
+        main {
+            background: rgb(255, 224, 250);
+            display: flex; 
+        }
+        .sidebar {
+            margin-right: 25px;
+            padding: 10px;
+        }
+        .sidebar-img {
+            width: 200px;
+        }
+        .content {
+            flex: 1;
+            padding: 15px;
+        }
+        #interests {
+            border: 4px silver ridge;
+            padding: 8px;
+        }
+        h2, h3 {
+            margin: 0px;
+        }
+    </style>
+    </head>
 
-			//////////////////////////////////////////////////////////////////
-			/////////////////// SETUP DO NOT DELETE //////////////////////////
-			//////////////////////////////////////////////////////////////////
-			
-			var box = jQuery('.box');	// reference to the HTML .box element
-			var board = jQuery('.board');	// reference to the HTML .board element
-			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+    <body>
+        <!-- All content goes here -->
+        <div id="all-contents">
+            <nav>
+                <h1>Taylor's Website</h1>
+                <nav id="nav-ul">
+                    <li class="nav-li">
+                        <a href="index.html"> Home </a>
+                    </li>
+                    <li class="nav-li">
+                        <a href="portfolio.html"> Portfolio </a>
+                    </li>
+                </ul>
+            </nav>
 
-			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 50);
-			
-			// Every time the box is clicked, call the handleBoxClick Function (see below)
-			box.on('click', handleBoxClick);
+            <main>
+                <!-- Sidebar section -->
+                <div class="sidebar">
+                    <img class="sidebar-img" src="https://7pqkhw.ch.files.1drv.com/y4mFGxJZn5QpO7qomlwMOd_-bCIjL8HWRpg3JqmFGjPrGnoA4azaTcCLgW5TVWU0jfozZsyKrNAEfTUQS3R14YnlY-kp8W6Dp1dTy4FyfrZctzxwuhNfdE5tz3AcG6_cvZ0OWPGS01Y998eKaU-qr6MTminqyM2MIWwK6OSH_dT4iqrSx7OezJH7bzTvzduY91GRNw3P665HsTr7cGb7aEgGg?width=828&height=1003&cropmode=none">
+                </div>
 
-			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
-				box.css("left", newPositionX);
-			}
-
-			// changes the text displayed on the Box
-			function changeBoxText(newText) {
-				box.text(newText);
-			}
-
-			//////////////////////////////////////////////////////////////////
-			/////////////////// YOUR CODE BELOW HERE /////////////////////////
-			//////////////////////////////////////////////////////////////////
-			
-            // TODO 2 - Variable declarations 
-            
-            var positionX = 0;
-            var points = 0;
-			var speed = 10;
-			/* 
-			This Function will be called 20 times/second. Each time it is called,
-			it should move the Box to a new location. If the box drifts off the screen
-			turn it around! 
-			*/
-			function update() {
-                positionX += 10;
-                moveBoxTo(positionX);
-                
-                if (positionX >= (boardwidth-54.7)) {
-                    speed *= -1;
-                };
-                if (positionX <= 0) {
-                    speed *= -1;
-                };
-			};
-
-			/* 
-			This Function will be called each time the box is clicked. Each time it is called,
-			it should increase the points total, increase the speed, and move the box to
-			the left side of the screen.
-			*/
-			function handleBoxClick() {
-                positionX = 0;
-                points += 1;
-                speed += 3;
-                changeBoxText(points);
-
-
-			};
-		})();
-	</script>
-</body>
-</html>
+                <!-- Content section -->
+                <div class="content">
+                    <h2>Taylor Hemelt</h2>
+                    <p>Student at Benjamin Franklin High School</p>
+                    <!-- Interests section -->
+                    <div id="interests">
+                        <h3>Interests</h3>
+                        <ul>
+                            <li>Tennis</li>
+                            <li>Sailing</li>
+                            <li>Napping</li>
+                        </ul>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body> 
