@@ -21,10 +21,21 @@ var init = function (window) {
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM SETUP ////////////////////////////
         ////////////////////////////////////////////////////////////
-        
-        
-
-
+        var rightEdge = circle.x + circle.radius;
+        var leftEdge = circle.x - circle.radius;
+        var bottomEdge = circle.y + circle.radius;
+        var topEdge = circle.y - circle.radius;
+        var circle;
+        var circles = [];
+        function drawCircle(){
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            physikz.addRandomVelocity(circle, canvas);
+            view.addChild(circle);
+            circles.push(circle);
+        }
+        for(i = 0; i < 100; i++){
+            drawCircle();
+        }
         ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
@@ -35,9 +46,13 @@ var init = function (window) {
         and check to see if it has drifted off the screen.         
         */
         function update() {
-            
-           
-            
+            for(i = 0; i < circles.length; i++){
+                var eachCircle = circles[i]
+                physikz.updatePosition(eachCircle);
+            }   
+            for(i = 0; i < circles.length; i++){
+                game.checkCirclePosition(eachCircle);
+            }   
         }
     
         /* 
@@ -48,10 +63,18 @@ var init = function (window) {
         game.checkCirclePosition = function(circle) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
-            if ( circle.x > canvas.width ) {
+            if ( rightEdge > canvas.width ) {
                 circle.x = 0;
             }
-            
+            if ( leftEdge < 0 ) {
+                circle.x = canvas.width;
+            }
+            if ( bottomEdge > canvas.height ) {
+                circle.y = 0;
+            }
+            if ( topEdge < 0 ) {
+                circle.y = canvas.height;
+            }
         }
         
         /////////////////////////////////////////////////////////////
