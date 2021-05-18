@@ -56,7 +56,8 @@ function runProgram(){
     // handle ball-wall collisions
     bounceBall();
     // handle player scoring and reset ball
-    madeBallIn();
+    // madeBallIn();
+    // increasePlayerScore();
     // redraw and calculate new position of ball
     repositionGameItem(ball);
     redrawGameItem(ball);
@@ -130,20 +131,20 @@ function runProgram(){
   }
 
   // handles player scoring and resets ball
-  function madeBallIn() {
-    // if ball runs into left wall, add 1 to player 2 score
-    if (ball.x < BOARD.X) { 
-      ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
-      player2.score += 1;
-      return player2;
-    }
-    // if ball runs into right wall, add 1 to player 1 score
-    if ((ball.x + ball.width) > BOARD.WIDTH) { 
-      ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
-      player1.score += 1;
-      return player1;
-    }
-  }
+  // function madeBallIn() {
+  //   // if ball runs into left wall, add 1 to player 2 score
+  //   if (ball.x < BOARD.X) { 
+  //     ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
+  //     player2.score += 1;
+  //     return player2;
+  //   }
+  //   // if ball runs into right wall, add 1 to player 1 score
+  //   if ((ball.x + ball.width) > BOARD.WIDTH) { 
+  //     ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
+  //     player1.score += 1;
+  //     return player1;
+  //   }
+  // }
   // calculates game item's new position
   function repositionGameItem(gameItem) {
     gameItem.x += gameItem.speedX; 
