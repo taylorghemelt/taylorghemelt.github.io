@@ -135,12 +135,12 @@ function runProgram(){
 
   function paddleBallCollision () {
     // bounces ball off left paddle
-    if (ball.x < leftPaddle.x && ball.x > leftPaddle.x + leftPaddle.width && ball.y < leftPaddle.y + leftPaddle.height && ball.y > leftPaddle.y) {
+    if (ball.x < leftPaddle.x + leftPaddle.width && ball.x + ball.width > leftPaddle.x && ball.y < leftPaddle.y + leftPaddle.height && ball.y + ball.height > leftPaddle.y) {
         ball.speedX *= -1;
 
     }
     // bounces ball off right paddle
-    if (ball.x < rightPaddle.x && ball.x < rightPaddle.x + rightPaddle.width && ball.y < rightPaddle.y + rightPaddle.height && ball.y > rightPaddle.y) {
+    if (ball.x < rightPaddle.x + rightPaddle.width && ball.x + ball.width < rightPaddle.x + rightPaddle.width && ball.y < rightPaddle.y + rightPaddle.height && ball.y + ball.height > rightPaddle.y) {
         ball.speedX *= -1;
 
     }
