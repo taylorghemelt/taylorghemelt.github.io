@@ -59,9 +59,12 @@ function runProgram(){
     // handle ball-wall collisions
     bounceBall();
     // handle paddle-ball collisions
-    paddleBallCollision();
+    doCollide(ball, leftPaddle);
+    doCollide(ball, rightPaddle);
     // handle player scoring and reset ball
     increasePlayerScore();
+    // ends the game if player score is 11
+    endGame();
     // redraw and calculate new position of ball
     repositionGameItem(ball);
     redrawGameItem(ball);
@@ -133,25 +136,53 @@ function runProgram(){
     }
   }
 
-  function paddleBallCollision () {
-    // bounces ball off left paddle
-    if (ball.x < leftPaddle.x + leftPaddle.width && ball.x + ball.width > leftPaddle.x && ball.y < leftPaddle.y + leftPaddle.height && ball.y + ball.height > leftPaddle.y) {
-        ball.speedX *= -1;
+  // function paddleBallCollision () {
+  //   // bounces ball off left paddle
+  //   if (ball.x < leftPaddle.x + leftPaddle.width && ball.x + ball.width > leftPaddle.x && ball.y < leftPaddle.y + leftPaddle.height && ball.y + ball.height > leftPaddle.y) {
+  //       ball.speedX *= -1;
 
-    }
-    // bounces ball off right paddle
-    if (ball.x < rightPaddle.x + rightPaddle.width && ball.x + ball.width < rightPaddle.x + rightPaddle.width && ball.y < rightPaddle.y + rightPaddle.height && ball.y + ball.height > rightPaddle.y) {
-        ball.speedX *= -1;
+  //   }
+  //   // bounces ball off right paddle
+  //   if (ball.x < rightPaddle.x + rightPaddle.width && ball.x + ball.width < rightPaddle.x + rightPaddle.width && ball.y < rightPaddle.y + rightPaddle.height && ball.y + ball.height > rightPaddle.y) {
+  //       ball.speedX *= -1;
 
+  //   }
+  //   return ball.speedX;
+  // }
+
+  function doCollide(square1, square2) {
+    // TODO: calculate and store the remaining
+    // sides of the square1
+    square1.leftX = square1.x;
+    square1.rightX = square1.x + square1.width;
+    square1.topY = square1.y;
+    square1.bottomY = square1.y + square1.height;
+    
+    // TODO: Do the same for square2
+    square2.leftX = square2.x;
+    square2.rightX = square2.x + square2.width;
+    square2.topY = square2.y;
+    square2.bottomY = square2.y + square2.height;
+  
+    // TODO: Return true if they are overlapping, false otherwise
+    var result = ((square1.leftX < square2.rightX) && (square1.rightX > square2.leftX) && (square1.topY < square2.bottomY) && (square1.bottomY > square2.topY)) ? true : false;
+    if (result === true) {
+      square1.speedX *= -1;
     }
-    return ball.speedX;
-  }
+	// Hint: use the following conditions:
+    // red left < blue right
+    // red right > blue left
+    // red top < blue bottom
+    // red bottom > blue top
+}
+
+
   // handles player scoring and resets ball
   function increasePlayerScore() {
     // if ball runs into left wall, add 1 to player 2 score
     if (ball.x < BOARD.X) { 
       ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
-      if (ball.speedX = 0) {
+      if (ball.speedX === 0) {
         ball.speedX = 4;
       }
       score2 += 1;
@@ -161,6 +192,9 @@ function runProgram(){
     if ((ball.x + ball.width) > BOARD.WIDTH) { 
       ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
       score1 += 1;
+      if (ball.speedX === 0) {
+        ball.speedX = 4;
+      }
       $("#player1Score").text(score1);
     }
   }
@@ -178,11 +212,13 @@ function runProgram(){
 
   // stops timer and turns off event handlers
   function endGame() {
-    // stop the interval timer
-    clearInterval(interval);
+    if (score1 || score2 === 11) {
+      // stop the interval timer
+      clearInterval(interval);
 
-    // turn off event handlers
-    $(document).off();
+      // turn off event handlers
+      $(document).off();
+    }
   }
   
 }
