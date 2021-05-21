@@ -23,16 +23,16 @@ function runProgram(){
     "HEIGHT": 440, 
   };
 
-  $($player2Score).text(score2)
-  $($player1Score).text(score1)
-
   // Game Item Objects
   var leftPaddle = MakeGameItem (20, 80, 10, 0, 180, 0, "#leftPaddle");
   var rightPaddle = MakeGameItem (20, 80, 410, 0, 180, 0, "#rightPaddle");
   var ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
-  var player1 = MakeGameItem (80, 80, 460, 0, 10, 0, "#player1");
-  var player2 = MakeGameItem (80, 80, 545, 0, 10, 0, "#player2");
 
+  var score1 = 0;
+  var score2 = 0;
+
+  $("#player1Score").text(score1);
+  $("#player2Score").text(score2);
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 f/s)
@@ -59,8 +59,7 @@ function runProgram(){
     // handle ball-wall collisions
     bounceBall();
     // handle player scoring and reset ball
-    madeBallIn();
-    // increasePlayerScore();
+    increasePlayerScore();
     // redraw and calculate new position of ball
     repositionGameItem(ball);
     redrawGameItem(ball);

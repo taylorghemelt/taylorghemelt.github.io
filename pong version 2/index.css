@@ -47,6 +47,22 @@ body {
   left: 410px;
 }
 
+#player1Score {
+  position: absolute;
+  background-color: white;
+  left: 100px;
+  top: 20px;
+  font-size: 40px;
+}
+
+#player2Score {
+  position: absolute;
+  background-color: white;
+  left: 585px;
+  top: 50px;
+  font-size: 40px;
+}
+
 #player1 {
   /* appearance */
   background-color: #9999ff;
@@ -70,18 +86,4 @@ body {
   position: absolute;
   top: 10px;
   left: 545px;
-}
-
-#player1Score {
-  position: absolute;
-  background-color: white;
-  left: 500px;
-  top: 50px;
-}
-
-#player2Score {
-  position: absolute;
-  background-color: white;
-  left: 585px;
-  top: 50px;
 }
