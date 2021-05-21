@@ -58,6 +58,8 @@ function runProgram(){
     redrawGameItem(rightPaddle);
     // handle ball-wall collisions
     bounceBall();
+    // handle paddle-ball collisions
+    paddleBallCollision();
     // handle player scoring and reset ball
     increasePlayerScore();
     // redraw and calculate new position of ball
@@ -131,19 +133,35 @@ function runProgram(){
     }
   }
 
+  function paddleBallCollision () {
+    // bounces ball off left paddle
+    if (ball.x < leftPaddle.x && ball.x > leftPaddle.x + leftPaddle.width && ball.y < leftPaddle.y + leftPaddle.height && ball.y > leftPaddle.y) {
+        ball.speedX *= -1;
+
+    }
+    // bounces ball off right paddle
+    if (ball.x < rightPaddle.x && ball.x < rightPaddle.x + rightPaddle.width && ball.y < rightPaddle.y + rightPaddle.height && ball.y > rightPaddle.y) {
+        ball.speedX *= -1;
+
+    }
+    return ball.speedX;
+  }
   // handles player scoring and resets ball
   function increasePlayerScore() {
     // if ball runs into left wall, add 1 to player 2 score
     if (ball.x < BOARD.X) { 
       ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
+      if (ball.speedX = 0) {
+        ball.speedX = 4;
+      }
       score2 += 1;
-      return score2;
+      $("#player2Score").text(score2);
     }
     // if ball runs into right wall, add 1 to player 1 score
     if ((ball.x + ball.width) > BOARD.WIDTH) { 
       ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
       score1 += 1;
-      return score1;
+      $("#player1Score").text(score1);
     }
   }
   // calculates game item's new position
