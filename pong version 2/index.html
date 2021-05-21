@@ -14,8 +14,8 @@
   <body>
     <div id='board'>
       <div id='gameItem'>
-          <div id="ball"> </div>
-          <div id="leftPaddle"> </div>
+          <div id="ball"></div>
+          <div id="leftPaddle"></div>
           <div id="rightPaddle"></div>
           <div id="player1">
             <div id="player1Score"></div>
@@ -23,26 +23,8 @@
           <div id="player2">
             <div id="player2Score"></div>
           </div>
+      </div>
     </div>
   </body>
-
-  <script>
-    var $player1Score = $("#player1Score");
-    var $player2Score = $("#player2Score");
-
-    $("<h1>").appendTo($player1Score).text("0")
-      .css({"color" : "white", "left" : 500, "top" : 50});
-    
-    $("<h1>").appendTo($player2Score).text("0")
-      .css({"color" : "white", "left" : 585, "top" : 50});
-    
-    // function increasePlayerScore () {
-    //   if (ball.x + ball.width > BOARD.X) {
-
-    //     $("<h1>").appendTo($player1Score).text("1");
-    //   }
-    // }
-    
-  </script>
 
 </html>

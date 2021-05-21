@@ -23,12 +23,15 @@ function runProgram(){
     "HEIGHT": 440, 
   };
 
+  $($player2Score).text(score2)
+  $($player1Score).text(score1)
+
   // Game Item Objects
-  var leftPaddle = MakeGameItem (20, 80, 10, 0, 180, 0, 0, "#leftPaddle");
-  var rightPaddle = MakeGameItem (20, 80, 410, 0, 180, 0, 0, "#rightPaddle");
-  var ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
-  var player1 = MakeGameItem (80, 80, 460, 0, 10, 0, 0, "#player1");
-  var player2 = MakeGameItem (80, 80, 545, 0, 10, 0, 0, "#player2");
+  var leftPaddle = MakeGameItem (20, 80, 10, 0, 180, 0, "#leftPaddle");
+  var rightPaddle = MakeGameItem (20, 80, 410, 0, 180, 0, "#rightPaddle");
+  var ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
+  var player1 = MakeGameItem (80, 80, 460, 0, 10, 0, "#player1");
+  var player2 = MakeGameItem (80, 80, 545, 0, 10, 0, "#player2");
 
 
   // one-time setup
@@ -93,7 +96,7 @@ function runProgram(){
   ////////////////////////////////////////////////////////////////////////////////
 
   // factory function for creating new game item objects
-  function MakeGameItem (width, height, x, speedX, y, speedY, score, id) {
+  function MakeGameItem (width, height, x, speedX, y, speedY, id) {
     var gameItem = {};
     gameItem.width = width;
     gameItem.height = height;
@@ -101,7 +104,6 @@ function runProgram(){
     gameItem.speedX = speedX; 
     gameItem.y = y;
     gameItem.speedY = speedY;
-    gameItem.score = score;
     gameItem.id = id;
     return gameItem;
   }
@@ -131,18 +133,18 @@ function runProgram(){
   }
 
   // handles player scoring and resets ball
-  function madeBallIn() {
+  function increasePlayerScore() {
     // if ball runs into left wall, add 1 to player 2 score
     if (ball.x < BOARD.X) { 
       ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
-      player2.score += 1;
-      return player2;
+      score2 += 1;
+      return score2;
     }
     // if ball runs into right wall, add 1 to player 1 score
     if ((ball.x + ball.width) > BOARD.WIDTH) { 
       ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
-      player1.score += 1;
-      return player1;
+      score1 += 1;
+      return score1;
     }
   }
   // calculates game item's new position

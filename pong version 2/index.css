@@ -71,3 +71,17 @@ body {
   top: 10px;
   left: 545px;
 }
+
+#player1Score {
+  position: absolute;
+  background-color: white;
+  left: 500px;
+  top: 50px;
+}
+
+#player2Score {
+  position: absolute;
+  background-color: white;
+  left: 585px;
+  top: 50px;
+}
