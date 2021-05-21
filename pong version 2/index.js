@@ -135,13 +135,13 @@ function runProgram(){
   function increasePlayerScore() {
     // if ball runs into left wall, add 1 to player 2 score
     if (ball.x < BOARD.X) { 
-      ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
+      ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
       score2 += 1;
       return score2;
     }
     // if ball runs into right wall, add 1 to player 1 score
     if ((ball.x + ball.width) > BOARD.WIDTH) { 
-      ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), 0, "#ball");
+      ball = MakeGameItem (20, 20, 210, randomNum(-2,2), 210, randomNum(-2,2), "#ball");
       score1 += 1;
       return score1;
     }
